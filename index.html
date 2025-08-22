@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泛函分析：从几何到无限</title>
+    
+    <!-- 引入样式文件 -->
+    <!-- Assumes css/style.css exists in the same directory -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 引入 MathJax 用于渲染LaTeX数学公式 -->
+    <!-- 这是让数学公式正确显示的关键 -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<script>
+    (function() {
+        // 使用 sessionStorage 来防止无限刷新循环。
+        // sessionStorage 在标签页关闭前都有效。
+        const hasRefreshed = sessionStorage.getItem('pageRefreshed');
+
+        if (!hasRefreshed) {
+            // 1. 如果标记不存在，说明是第一次加载。
+            // 2. 设置一个标记，这样刷新后就不会再次执行。
+            sessionStorage.setItem('pageRefreshed', 'true');
+            // 3. 执行强制刷新（true表示从服务器加载，绕过缓存）。
+            location.reload(true);
+        } else {
+            // 如果标记存在，说明是刷新后的页面，
+            // 则在用户离开页面时（例如关闭标签页）移除标记，
+            // 以便下次重新打开时可以再次刷新。
+            window.addEventListener('beforeunload', function() {
+                sessionStorage.removeItem('pageRefreshed');
+            });
+        }
+    })();
+</script>
+
+<body>
+
+    <header>
+        <h1>泛函分析：从几何到无限</h1>
+        <p>一场将有限维直觉延伸至无穷维函数空间的探索之旅</p>
+    </header>
+
+    <nav>
+        <ul>
+            <!-- 我们用 data-page 属性来指定要加载的文件名 (不含 .html) -->
+            <li><a href="#" class="nav-link" data-page="ch1">第一部分：从向量到函数</a></li>
+            <li><a href="#" class="nav-link" data-page="ch2">第二部分：构建空间</a></li>
+            <li><a href="#" class="nav-link" data-page="ch3">第三部分：算子与泛函</a></li>
+            <li><a href="#" class="nav-link" data-page="ch4">第四部分：三大支柱定理</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- 章节内容将通过 JavaScript 动态加载到这里 -->
+        <article id="content" class="content-container">
+            <!-- 初始加载提示 -->
+            <p>请在上方选择一个部分开始学习。</p>
+            <p>本网站旨在通过几何直觉和与有限维线性代数的类比，揭示泛函分析的核心思想。它将引导您理解为何函数可以被视为向量，以及如何在一个无限维的“函数空间”中定义长度、角度和变换。</p>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 泛函分析探索</p>
+    </footer>
+
+    <!-- 引入我们自己的JavaScript文件 (必须放在 body 底部) -->
+    <!-- Assumes js/main.js exists in the same directory -->
+    <script src="js/main.js"></script>
+</body>
+</html>
