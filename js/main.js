@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             // 如果加载失败，显示错误信息
-            contentArea.innerHTML = `<p style="color: red;">抱歉，加载内容时发生错误。请检查文件路径是否正确，或查看控制台获取更多信息。</p>`;
+            contentArea.innerHTML = `<p style="color: red;">抱歉，出现偶发性网络不稳定，请刷新网页</p>`;
             console.error('加载内容失败:', error);
         }
     };
@@ -58,3 +58,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // 页面首次加载时，默认加载第一部分的内容
     loadContent('ch1');
 });
+
